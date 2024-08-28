@@ -1,8 +1,12 @@
-import openai
+from openai import OpenAI
 import os
 import argparse
 from typing import List
 import re
+
+client = OpenAI(
+     api_key=os.getenv("OPENAI_API_KEY"),
+)
 
 MAX_INPUT_LENGTH = 32
 
@@ -30,16 +34,15 @@ def validate_length(prompt: str) -> bool:
 
 def generate_keywords(prompt: str) -> List[str]:
     # Load your API key from an environment variable or secret management service
-    openai.api_key = os.getenv("OPENAI_API_KEY")
     enriched_prompt = f"Generate related branding keywords for {prompt}: "
     print(enriched_prompt)
 
-    response = openai.Completion.create(
-        engine="davinci-instruct-beta-v3", prompt=enriched_prompt, max_tokens=32
-    )
+    response = client.completions.create(
+         engine="davinci-instruct-beta-v3", prompt=enriched_prompt, max_tokens=32
+         )
 
     # Extract output text.
-    keywords_text: str = response["choices"][0]["text"]
+    keywords_text: str = response.choices[0].text
 
     # Strip whitespace.
     keywords_text = keywords_text.strip()
@@ -53,16 +56,17 @@ def generate_keywords(prompt: str) -> List[str]:
 
 def generate_branding_snippet(prompt: str) -> str:
     # Load your API key from an environment variable or secret management service
-    openai.api_key = os.getenv("OPENAI_API_KEY")
     enriched_prompt = f"Generate upbeat branding snippet for {prompt}: "
     print(enriched_prompt)
 
-    response = openai.Completion.create(
-        engine="davinci-instruct-beta-v3", prompt=enriched_prompt, max_tokens=32
-    )
+    response = client.completions.create(
+         engine="davinci-instruct-beta-v3", 
+         prompt=enriched_prompt, 
+         max_tokens=32
+         )
 
     # Extract output text
-    branding_text: str = response["choices"][0]["text"]
+    branding_text: str = response.choices[0].text
 
     # Strip whitespace.
     branding_text = branding_text.strip()
@@ -77,4 +81,4 @@ def generate_branding_snippet(prompt: str) -> str:
 
 if __name__ == "__main__":
     main()
- 
+
