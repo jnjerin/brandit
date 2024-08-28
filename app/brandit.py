@@ -4,17 +4,28 @@ import argparse
 from typing import List
 import re
 
+MAX_INPUT_LENGTH = 32
+
 def main():
+
     parser = argparse.ArgumentParser()
     parser.add_argument("--input", "-i", type=str, required=True)
     args = parser.parse_args()
     user_input = args.input
 
     print(f"User input: {user_input}")
-    branding_result = generate_branding_snippet(user_input)
-    keywords_Result = generate_keywords(user_input)
-    print(branding_result)
-    print(keywords_Result)
+    if validate_length(user_input):
+          generate_branding_snippet(user_input)
+          generate_keywords(user_input)
+    else:
+          raise ValueError(
+            f"Input length is too long. Must be under {MAX_INPUT_LENGTH}. Submitted input is {user_input}"
+        )
+
+
+
+def validate_length(prompt: str) -> bool:
+    return len(prompt) <= MAX_INPUT_LENGTH
 
 
 def generate_keywords(prompt: str) -> List[str]:
@@ -38,9 +49,6 @@ def generate_keywords(prompt: str) -> List[str]:
 
     print(f"Keywords: {keywords_array}")
     return keywords_array
-
-    return keywords_text
-
 
 
 def generate_branding_snippet(prompt: str) -> str:
