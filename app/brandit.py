@@ -2,6 +2,7 @@ import openai
 import os
 import argparse
 from typing import List
+import re
 
 def main():
     parser = argparse.ArgumentParser()
@@ -12,7 +13,8 @@ def main():
     print(f"User input: {user_input}")
     branding_result = generate_branding_snippet(user_input)
     keywords_Result = generate_keywords(user_input)
-    print(result)
+    print(branding_result)
+    print(keywords_Result)
 
 
 def generate_keywords(prompt: str) -> List[str]:
@@ -30,6 +32,12 @@ def generate_keywords(prompt: str) -> List[str]:
 
     # Strip whitespace.
     keywords_text = keywords_text.strip()
+    keywords_array = re.split(",|\n|;|-", keywords_text)
+    keywords_array = [k.lower().strip() for k in keywords_array]
+    keywords_array = [k for k in keywords_array if len(k) > 0]
+
+    print(f"Keywords: {keywords_array}")
+    return keywords_array
 
     return keywords_text
 
