@@ -9,17 +9,35 @@ def main():
     user_input = args.input
 
     print(f"User input: {user_input}")
-    pass 
+    result = generate_branding_snippet(user_input)
+    print(result)
 
 
 
-# Set your OpenAI API key
-openai.api_key = os.getenv("OPENAI_API_KEY")
+def generate_branding_snippet(prompt: str) -> str:
+    # Load your API key from an environment variable or secret management service
+    openai.api_key = os.getenv("OPENAI_API_KEY")
+    enriched_prompt = f"Generate upbeat branding snippet for {prompt}: "
+    print(enriched_prompt)
+
+    response = openai.Completion.create(
+        engine="davinci-instruct-beta-v3", prompt=enriched_prompt, max_tokens=32
+    )
+
+    # Extract output text
+    branding_text: str = response["choices"][0]["text"]
+
+    # Strip whitespace.
+    branding_text = branding_text.strip()
+
+    # Add ... to truncated statements
+    last_char = branding_text[-1]
+    if last_char not in {".", "!", "?"}:
+        branding_text += "..."
+
+    print(f"Snippet: {branding_text}")
+    return branding_text 
+
+if __name__ == "__main__":
+    main()
  
-# Example usage
-# response = openai.Completion.create(
-#   engine="davinci",
-#   prompt="Say this is a test", 
-#   max_tokens=5
-# )
-# print(response.choices[0].text.strip())
