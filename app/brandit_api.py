@@ -1,14 +1,19 @@
 from fastapi import FastAPI
-from fastapi import FastAPI
-from brandit import generate_branding_snippet, generate_keywords
+from .brandit import generate_branding_snippet, generate_keywords
 
 app = FastAPI() 
 
 @app.get("/generate_snippet")
 async def generate_snippet_api(prompt: str):
-    validate_input_length(prompt)
     snippet = generate_branding_snippet(prompt)
-    return {"snippet": snippet, "keywords": []}
+    return {"snippet": snippet}
 
 
-#uvicorn brandit_api:app --reload
+@app.get("/generate_keywords")
+async def generate_keywords_api(prompt: str):
+    keywords = generate_keywords(prompt)
+    return {"keywords": keywords}
+
+
+
+#uvicorn app.brandit_api:app --reload
