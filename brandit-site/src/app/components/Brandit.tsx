@@ -2,6 +2,7 @@
 
 import React from 'react'
 import Form from './Form';
+import Results from './Results';
 
 const Brandit = () => {
   const ENDPOINT: string =
@@ -20,6 +21,7 @@ const Brandit = () => {
   return (
     <div>
       <Form />
+      <Results />
     </div>
    
   )
