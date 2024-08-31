@@ -8,12 +8,24 @@ interface ResultsProps {
   }
 
   const Results: React.FC<ResultsProps> = (props) => {
+    const keywordElements = [];
+    for (let i = 0; i < props.keywords.length; i++) {
+    const element = (
+      <div
+        key={i}
+        className=""
+      >
+        #{props.keywords[i]}
+      </div>
+    );
+    keywordElements.push(element);
+  }
   return (
     <>
         <div className="">
-          Your resuslts:
+          Your results:
           <div>Snippet: {props.snippet}</div>
-          <div>Keywords: {props.keywords}</div>
+          <div>Keywords: {keywordElements}</div>
 
         </div>
       <button

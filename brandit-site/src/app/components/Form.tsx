@@ -22,7 +22,7 @@ const Form: React.FC<FormProps> = (props) => {
         type="text"
         placeholder="cake"
         value={props.prompt}
-        onChange={(e) => prompt(e.currentTarget.value)}
+        onChange={(e) => props.setPrompt(e.currentTarget.value)}
         ></input>
     <button
       className=""
