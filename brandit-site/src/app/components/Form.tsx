@@ -4,6 +4,7 @@ interface FormProps {
     prompt: string;
     setPrompt: any;
     onSubmit: any;
+    isLoading: boolean;
     characterLimit: number;
   }
 
@@ -37,7 +38,7 @@ const Form: React.FC<FormProps> = (props) => {
         <button
         className=""
         onClick={props.onSubmit}
-        disabled={!isPromptValid}
+        disabled={props.isLoading || !isPromptValid}
         >
         Submit
         </button>
