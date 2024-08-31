@@ -38,7 +38,9 @@ def generate_keywords(prompt: str) -> List[str]:
     print(enriched_prompt)
 
     response = client.completions.create(
-         engine="davinci-instruct-beta-v3", prompt=enriched_prompt, max_tokens=32
+         model="gpt-3.5-turbo", 
+         prompt=enriched_prompt, 
+         max_tokens=32
          )
 
     # Extract output text.
@@ -60,7 +62,7 @@ def generate_branding_snippet(prompt: str) -> str:
     print(enriched_prompt)
 
     response = client.completions.create(
-         engine="davinci-instruct-beta-v3", 
+         model="gpt-3.5-turbo",
          prompt=enriched_prompt, 
          max_tokens=32
          )
