@@ -5,6 +5,7 @@ import Form from './Form';
 import Results from './Results';
 
 const Brandit = () => {
+  const CHARACTER_LIMIT: number = 32;
   const ENDPOINT: string =
     "https://9sxyr49ks0.execute-api.us-east-1.amazonaws.com/prod/generate_snippet_and_keywords";
 
@@ -48,6 +49,7 @@ const Brandit = () => {
         prompt={prompt}
         setPrompt={setPrompt}
         onSubmit={onSubmit}
+        characterLimit={CHARACTER_LIMIT}
       />
     );
   }
