@@ -14,14 +14,48 @@ const Brandit = () => {
   const [hasResult, setHasResult] = React.useState(false);
 
   const onSubmit = () => {
-    console.log('submitting' + prompt)
-    fetch(`${ENDPOINT}?prompt=${prompt}`).then(console.log)
+    console.log("Submitting: " + prompt);
+    fetch(`${ENDPOINT}?prompt=${prompt}`)
+      .then((res) => res.json())
+      .then(onResult);
+  };
+
+  const onResult = (data: any) => {
+    setSnippet(data.snippet);
+    setKeywords(data.keywords);
+    setHasResult(true);
+  };
+
+  const onReset = () => {
+    setPrompt("");
+    setHasResult(false);
+  };
+
+  let displayedElement = null;
+
+  if (hasResult) {
+    displayedElement = (
+      <Results
+        snippet={snippet}
+        keywords={keywords}
+        onBack={onReset}
+        prompt={prompt}
+      />
+    );
+  } else {
+    displayedElement = (
+      <Form
+        prompt={prompt}
+        setPrompt={setPrompt}
+        onSubmit={onSubmit}
+      />
+    );
   }
+
 
   return (
     <div>
-      <Form />
-      <Results />
+      {displayedElement}
     </div>
    
   )
