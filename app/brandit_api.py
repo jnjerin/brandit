@@ -1,3 +1,9 @@
+"""
+Imports the FastAPI and HTTPException classes from the fastapi module.
+
+FastAPI is a modern, fast (high-performance), web framework for building APIs with Python 3.6+ based on standard Python type hints.
+HTTPException is an exception that can be raised to return an HTTP error response.
+"""
 from fastapi import FastAPI, HTTPException
 from .brandit import generate_branding_snippet, generate_keywords
 from mangum import Mangum

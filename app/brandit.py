@@ -1,3 +1,8 @@
+"""
+Imports the OpenAI client for interacting with the OpenAI API.
+
+This import statement is used to access the OpenAI client, which is used to generate branding keywords and other content using the OpenAI API. The API key is loaded from an environment variable or secret management service.
+"""
 from openai import OpenAI
 import os
 import argparse
