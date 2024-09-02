@@ -47,7 +47,7 @@ const Form: React.FC<FormProps> = (props) => {
       </div>
       <button
         className="bg-gradient-to-r from-purple-400 
-        to-blue-500 disabled:opacity-50 w-full p-2 rounded-md text-lg"
+        to-blue-500 disabled:opacity-50 w-full p-2 rounded-md text-lg text-white  font-semibold"
         onClick={props.onSubmit}
         disabled={props.isLoading || !isPromptValid}
       >

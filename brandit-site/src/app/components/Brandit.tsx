@@ -67,7 +67,7 @@ const Brandit = () => {
   return (
     <div className="h-screen flex">
       <div className="max-w-md m-auto p-2">
-        <div className="bg-slate-800 p-6 rounded-md ">
+        <div className="bg-slate-900 p-6 rounded-md ">
           <div className="grid text-center my-6">
             <div className="flex justify-center items-center">
               <Image className='text-center' src={logo} alt="BrandIt Logo" height={200} width={100} />
