@@ -25,7 +25,7 @@ const Form: React.FC<FormProps> = (props) => {
 
   return (
     <>
-        <div className="mb-6 text-slate-400">
+        <div className="mb-6 text-slate-300">
           <p>
             Tell me what your brand is about and I will generate copy and keywords
             for you.
@@ -33,7 +33,7 @@ const Form: React.FC<FormProps> = (props) => {
         </div>
 
       <input
-        className="p-2 w-full rounded-md focus:outline-purple-400 focus:outline text-slate-700"
+        className="p-2 w-full rounded-md focus:outline-purple-400 focus:outline text-slate-500"
         type="text"
         placeholder="cake"
         value={props.prompt}
@@ -45,14 +45,25 @@ const Form: React.FC<FormProps> = (props) => {
             {props.prompt.length}/{props.characterLimit}
           </div>
       </div>
-      <button
-        className="bg-gradient-to-r from-purple-400 
-        to-blue-500 disabled:opacity-50 w-full p-2 rounded-md text-lg text-white  font-semibold"
-        onClick={props.onSubmit}
-        disabled={props.isLoading || !isPromptValid}
-      >
-        Submit
-      </button>
+          <button 
+              className="bg-gradient-to-r from-purple-400 
+              to-blue-500 disabled:opacity-50 w-full p-2 rounded-md text-xl text-purple-100 font-semibold flex justify-center items-center"
+              onClick={props.onSubmit}
+              disabled={props.isLoading || !isPromptValid}
+            >
+              {props.isLoading ? (
+                <>
+                  Loading...
+                  <svg className="animate-spin h-5 w-5 ml-3" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                  </svg>
+                </>
+              ) : (
+                "Submit"
+              )}
+            </button>
+
     </>
   )
 }

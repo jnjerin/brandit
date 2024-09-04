@@ -38,15 +38,15 @@ const Results: React.FC<ResultsProps> = (props) => {
       <div className="mb-6">
         {resultSection(
           "Prompt",
-          <div className="text-slate-400  text-xl ">{props.prompt}</div>)}
-        {resultSection
-        ("Branding Snippet", 
-          <div className="text-slate-400 text-md ">{props.snippet}</div>)}
+          <div className="text-slate-200  text-xl ">{props.prompt}</div>)}
+        {resultSection(
+        "Branding Snippet", 
+          <div className="text-slate-200 text-md ">{props.snippet}</div>)}
         {resultSection("Keywords", keywordElementsHolder)}
       </div>
       <button
-        className="text-white bg-gradient-to-r from-purple-400 
-        to-blue-500 disabled:opacity-50 w-full p-2 rounded-md text-lg"
+        className="bg-gradient-to-r from-purple-400
+        to-blue-500 disabled:opacity-50 w-full p-2 rounded-md text-lg text-purple-100  font-semibold justify-center items-center"
         onClick={props.onBack}
       >
         Back
@@ -54,5 +54,4 @@ const Results: React.FC<ResultsProps> = (props) => {
     </>
   );
 };
-
 export default Results;
