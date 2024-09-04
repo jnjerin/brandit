@@ -26,8 +26,8 @@ const Results: React.FC<ResultsProps> = (props) => {
 
   const resultSection = (label: string, body: any) => {
     return (
-      <div className="bg-slate-700 p-4 my-3 rounded-md">
-        <div className="text-slate-400 text-sm font-bold mb-4">{label}</div>
+      <div className="bg-violet-900 p-4 my-3 rounded-md">
+        <div className="text-purple-200 text-sm font-bold mb-4">{label}</div>
         <div>{body}</div>
       </div>
     );
@@ -38,13 +38,14 @@ const Results: React.FC<ResultsProps> = (props) => {
       <div className="mb-6">
         {resultSection(
           "Prompt",
-          <div className="text-lg font-bold">{props.prompt}</div>
-        )}
-        {resultSection("Branding Snippet", props.snippet)}
+          <div className="text-slate-400  text-xl ">{props.prompt}</div>)}
+        {resultSection
+        ("Branding Snippet", 
+          <div className="text-slate-400 text-md ">{props.snippet}</div>)}
         {resultSection("Keywords", keywordElementsHolder)}
       </div>
       <button
-        className="bg-gradient-to-r from-purple-400 
+        className="text-white bg-gradient-to-r from-purple-400 
         to-blue-500 disabled:opacity-50 w-full p-2 rounded-md text-lg"
         onClick={props.onBack}
       >
