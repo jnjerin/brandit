@@ -24,6 +24,7 @@ export class BranditInfrastructureStack extends cdk.Stack {
       environment: {
         OPENAI_API_KEY: process.env.OPENAI_API_KEY ?? "",
       },
+      timeout: cdk.Duration.seconds(30), // Increase timeout to 30 seconds
       });
 
       const branditApi = new apiGateway.RestApi(this, "RestApi", {
