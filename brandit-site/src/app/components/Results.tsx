@@ -7,18 +7,26 @@ interface ResultsProps {
 }
 
 const Results: React.FC<ResultsProps> = (props) => {
-  const keywordElements = [];
-  for (let i = 0; i < props.keywords.length; i++) {
-    const element = (
-      <div
-        key={i}
-        className="bg-purple-200 p-1 text-purple-700 px-2 text-sm rounded-md"
-      >
-        #{props.keywords[i]}
-      </div>
-    );
-    keywordElements.push(element);
-  }
+  const keywordElements = props.keywords.map((keyword, index) => (
+    <div
+      key={index}
+      className="bg-purple-200 p-1 text-purple-700 px-2 text-sm rounded-md"
+    >
+      #{keyword}
+    </div>
+  ));
+  // const keywordElements = [];
+  // for (let i = 0; i < props.keywords.length; i++) {
+  //   const element = (
+  //     <div
+  //       key={i}
+  //       className="bg-purple-200 p-1 text-purple-700 px-2 text-sm rounded-md"
+  //     >
+  //       #{props.keywords[i]}
+  //     </div>
+  // //   );
+  //   keywordElements.push(element);
+  // }
 
   const keywordElementsHolder = (
     <div className="flex flex-wrap gap-2">{keywordElements}</div>
