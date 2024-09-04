@@ -5,7 +5,7 @@ FastAPI is a modern, fast (high-performance), web framework for building APIs wi
 HTTPException is an exception that can be raised to return an HTTP error response.
 """
 from fastapi import FastAPI, HTTPException
-from .brandit import generate_branding_snippet, generate_keywords
+from brandit import generate_branding_snippet, generate_keywords
 from mangum import Mangum
 from fastapi.middleware.cors import CORSMiddleware
 

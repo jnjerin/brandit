@@ -53,20 +53,14 @@ def generate_keywords(prompt: str) -> List[str]:
 
     # Strip whitespace and split into array.
     keywords_array = re.split(",|\n|;|-", keywords_text)
-    
-    # Clean up keywords: remove leading/trailing whitespace, convert to lowercase,
-    # remove any leading numbers, and filter out empty strings.
-    keywords_array = [re.sub(r'^\d+\.\s*', '', k.lower().strip()) for k in keywords_array if k.strip()]
 
-    # # Strip whitespace.
-    # keywords_text = keywords_text.strip()
-    # keywords_array = re.split(",|\n|;|-", keywords_text)
-    # keywords_array = [k.lower().strip() for k in keywords_array]
-    # keywords_array = [k for k in keywords_array if len(k) > 0]
+     # Clean up keywords: remove leading/trailing whitespace, convert to lowercase,
+    # remove any leading numbers and dots, and filter out empty strings.
+    keywords_array = [re.sub(r'^[\d\s.]+', '', k.lower().strip()) for k in keywords_array]
+    keywords_array = [k for k in keywords_array if len(k) > 0]
 
     print(f"Keywords: {keywords_array}")
     return keywords_array
-
 
 def generate_branding_snippet(prompt: str) -> str:
     # Load your API key from an environment variable or secret management service
