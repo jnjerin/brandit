@@ -43,7 +43,7 @@ def generate_keywords(prompt: str) -> List[str]:
     print(enriched_prompt)
 
     response = client.completions.create(
-         model="gpt-3.5-turbo", 
+         model="gpt-3.5-turbo-instruct", 
          prompt=enriched_prompt, 
          max_tokens=32
          )
@@ -67,7 +67,7 @@ def generate_branding_snippet(prompt: str) -> str:
     print(enriched_prompt)
 
     response = client.completions.create(
-         model="gpt-3.5-turbo",
+         model="gpt-3.5-turbo-instruct",
          prompt=enriched_prompt, 
          max_tokens=32
          )
