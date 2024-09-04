@@ -21,6 +21,7 @@ Brandit is a branding solution that leverages modern web technologies and cloud-
 ## Key Technologies
 
 - **Frontend**: Next.js 13+ with Typescript (React)
+- **Styling**: Tailwind CSS for responsive and utility-first design
 - **Backend**: Python3
 - **Infrastructure as Code**: AWS CDK (written in TypeScript)
 - **API**: Python FASTAPI and AWS API Gateway
