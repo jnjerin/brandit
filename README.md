@@ -6,6 +6,18 @@
 
 Brandit is a branding solution that leverages modern web technologies and cloud-native architecture to deliver a powerful, scalable, and efficient branding experience. This project demonstrates proficiency in full-stack development, cloud computing, and AI integration.It combines a Next.js frontend with a serverless backend powered by AWS CDK and Lambda. 
 
+## Screenshots
+
+### Home Page
+![Home Page](./assets/home-page-screenshot.png)
+
+*Brandit's home page introduces the AI branding solution and provides a user-friendly interface for inputting brand details to generate customized branding suggestions.*
+
+### Results Page
+![Results Page](./assets/results-page-screenshot.png)
+
+*The results page displays the AI-generated prompt snippets and keywords displayed on the results page, offering users targeted inspiration for their branding projects.*
+
 ## Key Technologies
 
 - **Frontend**: Next.js 13+ with Typescript (React)
