@@ -1,109 +1,146 @@
+# BrandIt
+AI-powered marketing copy generator built with Next.js and AWS serverless infrastructure.
 
+[![Live Demo](https://img.shields.io/badge/demo-live-success)](https://brandit-beta.vercel.app/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Next.js](https://img.shields.io/badge/Next.js-000000?logo=next.js&logoColor=white)](https://nextjs.org/)
+[![AWS](https://img.shields.io/badge/AWS-232F3E?logo=amazon-aws&logoColor=white)](https://aws.amazon.com/)
 
-# Brandit: Next-Gen Branding Solution
+## Overview
 
-## Project Overview
+BrandIt is an AI-powered platform that generates professional marketing copy using OpenAI's GPT models. Users input brand details (target audience, tone, keywords) and receive instant, customized marketing content.
 
-Brandit is a branding solution that leverages modern web technologies and cloud-native architecture to deliver a powerful, scalable, and efficient branding experience. This project demonstrates proficiency in full-stack development, cloud computing, and AI integration.It combines a Next.js frontend with a serverless backend powered by AWS CDK and Lambda. 
+**Built to demonstrate:**
+- AI API integration (OpenAI GPT-3.5/4)
+- AWS serverless architecture (Lambda, API Gateway, DynamoDB)
+- Infrastructure as Code (AWS CDK)
+- Full-stack TypeScript development
+
+**Live Demo:** [brandit-beta.vercel.app](https://brandit-beta.vercel.app/)
+
+---
 
 ## Screenshots
 
 ### Home Page
-![Home Page](./assets/home-page-screenshot.png)
+[![Home Page](assets/home-page-screenshot.png)](assets/home-page-screenshot.png)
 
-*Brandit's home page introduces the AI branding solution and provides a user-friendly interface for inputting brand details to generate customized branding suggestions.*
+*User inputs brand details for AI-generated copy*
 
 ### Results Page
-![Results Page](./assets/results-page-screenshot.png)
+[![Results Page](assets/results-page-screenshot.png)](assets/results-page-screenshot.png)
 
-*The results page displays the AI-generated prompt snippets and keywords displayed on the results page, offering users targeted inspiration for their branding projects.*
+*AI-generated marketing copy and keywords*
 
-## Key Technologies
+---
 
-- **Frontend**: Next.js 13+ with Typescript (React)
-- **Styling**: Tailwind CSS for responsive and utility-first design
-- **Backend**: Python3
-- **Infrastructure as Code**: AWS CDK (written in TypeScript)
-- **API**: Python FASTAPI and AWS API Gateway
-- **AI Integration**: OpenAI API
+## Tech Stack
 
-## Architecture Highlights
+**Frontend:**
+- Next.js 14 (React)
+- TypeScript
+- Tailwind CSS
+- Deployed on Vercel
 
-1. **Serverless Architecture**: Utilizing AWS Lambda for cost-effective, scalable backend operations.
-2. **Infrastructure as Code**: Employing AWS CDK for reproducible and version-controlled infrastructure.
-3. **Modern Frontend**: Leveraging Next.js for server-side rendering, optimized performance, and excellent developer experience.
-4. **AI-Powered Branding**: Integrating OpenAI's API for intelligent branding suggestions and analysis.
+**Backend:**
+- Python 3.9 with FastAPI
+- AWS Lambda (serverless compute)
+- AWS API Gateway (HTTP routing)
+- DynamoDB (generation history storage)
+- AWS CDK (infrastructure as code)
 
-## Project Structure
+**AI:**
+- OpenAI API (GPT-3.5/4)
 
-- `brandit-site/`: Next.js frontend application
-- `brandit-infrastructure/`: AWS CDK code for infrastructure setup
-- `app/`: Python backend code with FastAPI
+---
 
-## Component Breakdown
-
-### Frontend (brandit-site)
-
-The frontend is built using Next.js, a powerful React framework for building modern web applications. Key features include:
-
-- Next.js 13+ with the new `app` directory structure  for improved routing and layouts
-- Optimized font loading using `next/font`
-- Easy deployment to Vercel or other hosting platforms
-
-To run the frontend locally:
-
-```bash
-cd brandit-site
-npm i
-npm run dev
+## Architecture
+```
+User Input → Next.js Frontend → API Gateway → Lambda (Python/FastAPI)
+                                                 ↓
+                                            OpenAI API
+                                                 ↓
+                                        DynamoDB (history) → Response
 ```
 
-Access the application at [http://localhost:3000](http://localhost:3000).
+**Key Technical Decisions:**
+- **Serverless architecture** for automatic scaling and cost efficiency
+- **AWS CDK** for version-controlled infrastructure
+- **DynamoDB** for fast, scalable NoSQL storage
+- **Streaming responses** to handle variable OpenAI API latency (100ms-5s)
+- **Rate limiting** to prevent API cost abuse
 
-### Backend (app)
+---
 
-The backend logic is implemented in Python and deployed as a Lambda function. The main handler is located in `brandkit_api.py`.
+## Features
 
-The backend is implemented as an AWS Lambda function using Python 3.9:
-- Main handler located in `brandkit_api.py`
-- Integrates with OpenAI's API using the `OPENAI_API_KEY` environment variable
-- Designed to handle API requests through API Gateway
+- Instant AI-generated marketing copy (taglines, descriptions, social posts)
+- Brand-specific prompt engineering for consistent voice
+- Generation history stored per user
+- Responsive UI with real-time loading states
+- Cost-optimized with caching and rate limiting
 
-## Backend Infrastructure (brandit-infrastructure)
+---
 
-The AWS infrastructure is defined using AWS CDK with TypeScript. 
+## Running Locally
 
-The file ```brandit-infrastructure/lib/brandit-infrastructure-stack.ts```  sets up the following AWS resources:
-- Lambda Layer (`BaseLayer`) from `lambda_base_layer/layer.zip` for shared code or dependencies
-- Lambda function (`ApiFunction`) using Python 3.9 runtime and including the `BaseLayer`
-- API Gateway (`RestApi`) named "Brandit API" integrated with the Lambda function and a proxy integration to the Lambda function
-- Lambda function code sourced from the `../app/` directory
-- Environment variables, specifically `OPENAI_API_KEY`
+### Prerequisites
+- Node.js 18+
+- Python 3.9+
+- AWS Account (for backend deployment)
+- OpenAI API key
 
-*This setup demonstrates a serverless architecture that's scalable and easy to maintain, with infrastructure as code for version control and reproducibility.*
+### Frontend Setup
+```bash
+cd brandit-site
+npm install
+npm run dev
+```
+Visit `http://localhost:3000`
 
-To deploy the infrastructure:
-
+### Backend Deployment
 ```bash
 cd brandit-infrastructure
+npm install
 npm run build
 npx cdk deploy
 ```
 
+### Environment Variables
+Create `.env.local` in `brandit-site/`:
+```
+OPENAI_API_KEY=your_openai_key
+AWS_API_ENDPOINT=your_api_gateway_url
+```
 
-## Environment Variables
+---
 
-The application uses the following environment variable:
+## Project Structure
+```
+brandit/
+├── brandit-site/          # Next.js frontend
+├── brandit-infrastructure/ # AWS CDK infrastructure
+├── app/                    # Python Lambda backend (FastAPI)
+└── assets/                 # Screenshots
+```
 
-- `OPENAI_API_KEY`: Required for integrating with OpenAI services
+---
 
+## What I Learned
 
-## Standout Features
+- Integrating OpenAI API with streaming responses for better UX
+- Deploying serverless infrastructure with AWS CDK
+- Managing AI API costs with caching and rate limiting
+- Building type-safe full-stack apps (TypeScript + Python type hints)
+- Infrastructure as Code best practices
 
-1. **Full-Stack Expertise**: Demonstrates proficiency in both frontend (Next.js/React) and backend (Python/AWS) technologies.
-2. **Cloud-Native Design**: Showcases understanding of modern cloud architecture principles and best practices.
-3. **AI Integration**: Highlights ability to work with cutting-edge AI technologies for practical applications.
-4. **DevOps Practices**: Implements infrastructure as code, showing DevOps and cloud engineering skills.
-5. **Scalability**: Designed to handle growth with serverless architecture and cloud services.
+---
 
+## Future Improvements
+
+- User authentication and team collaboration
+- A/B testing framework for generated copy
+- Version history with rollback capability
+- Analytics dashboard for copy performance tracking
+- Multi-language support
 
